@@ -2,12 +2,13 @@ package com.kovalenko.labs;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LabsController {
 
-    @RequestMapping("/lab2")
+    @RequestMapping(value = "/lab2")
     public ModelAndView lab2Start() {
         return new ModelAndView("lab2");
     }
