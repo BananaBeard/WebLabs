@@ -3,7 +3,12 @@ package com.kovalenko.labs;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class LabsController {
@@ -21,5 +26,19 @@ public class LabsController {
     @RequestMapping("/lab4")
     public ModelAndView lab4Start() {
         return new ModelAndView("lab4");
+    }
+
+    @RequestMapping("lab5")
+    public ModelAndView lab5start(){
+        return new ModelAndView("lab5");
+    }
+
+    @RequestMapping(value = "/test/ajaxtest", method = RequestMethod.GET)
+    @ResponseBody
+    public Set<String> ajaxTest() {
+        Set<String> records = new HashSet<String>();
+        records.add("Record #1");
+        records.add("Record #2");
+        return records;
     }
 }
