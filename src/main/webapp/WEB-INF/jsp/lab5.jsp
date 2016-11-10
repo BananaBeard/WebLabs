@@ -8,12 +8,28 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#test").click(function(){
-                $.get("/ajaxtest",function(data,status){
-                    alert("Data: " + data + "\nStatus: " + status);
-                    document.getElementById("area1").value =data;
+                $.get("/sort", {method: document.getElementById("sel1").value, list: document.getElementById("area1").value}, function(data,status){
+                    document.getElementById("area1").value = data;
                 });
             });
         });
+
+        //        function sortText() {
+        //            var list =
+        //            {
+        //                method: "1",
+        //                list: document.getElementById("area1").value
+        //            }
+        //            $.ajax({
+        //                type: "GET",
+        //                dataType: 'json',
+        //                url: "sort.html",
+        //                data: {method: "1", list: document.getElementById("area1").value},
+        //                success: function(data) {
+        //                    $('#time').html(data);
+        //                }
+        //            });
+        //        }
     </script>
 </head>
 <body>
@@ -42,8 +58,16 @@
                     <div class="form-group">
                         <textarea class="form-control" rows="1" id="area1" name="area1"></textarea>
                     </div>
-
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="alert alert-danger">
+                        <strong>Увага!</strong> Bogosort(випадкове сортування) може виконуватися неймовірно довго.
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
             </div>
         </div>
         </div>
