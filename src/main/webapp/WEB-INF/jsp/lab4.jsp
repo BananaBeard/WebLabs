@@ -6,31 +6,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-        function cycle1() {
-            var startValue;
-            var stepValue;
-            var endValue;
-
-            if (document.getElementById('start1r1').checked) {startValue = document.getElementById('start1r1').value}
-            else if (document.getElementById('start1r2').checked) {startValue = document.getElementById('start1r2').value}
-            else if (document.getElementById('start1r3').checked) {startValue = document.getElementById('start1r3').value}
-
-            if (document.getElementById('step1r1').checked) {stepValue = document.getElementById('step1r1').value}
-            else if (document.getElementById('step1r2').checked) {stepValue = document.getElementById('step1r2').value}
-            else if (document.getElementById('step1r3').checked) {stepValue = document.getElementById('step1r3').value}
-
-            if (document.getElementById('end1r1').checked) {endValue = document.getElementById('end1r1').value}
-            else if (document.getElementById('end1r2').checked) {endValue = document.getElementById('end1r2').value}
-            else if (document.getElementById('end1r3').checked) {endValue = document.getElementById('end1r3').value}
-
-            var Alltext = "";
-            for(var i=startValue; i>=endValue; i -= stepValue) {
-                alert(i)
-                Alltext+=i + " ";
-            }
-            document.getElementById("area1").value = Alltext;
-        }
-
         function fillArea(number) {
 
             var startValue;

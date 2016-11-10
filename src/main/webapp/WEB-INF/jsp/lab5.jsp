@@ -8,7 +8,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#test").click(function(){
-                $.get("/test/ajaxtest",function(data,status){
+                $.get("/ajaxtest",function(data,status){
                     alert("Data: " + data + "\nStatus: " + status);
                     document.getElementById("area1").value =data;
                 });
@@ -24,12 +24,14 @@
             <div class="panel-heading">Сортування</div>
             <div class="panel-body">
                 <div class="form-group">
-                    <label for="sel1">Select list:</label>
+                    <label for="sel1">Метод сортування:</label>
                     <select class="form-control" id="sel1">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                        <option>1. Метод вибору.</option>
+                        <option>2. Метод вставки.</option>
+                        <option>3. Випадковий метод.</option>
+                        <option>4. Бульбашковий метод.</option>
+                        <option>5. Швидкий метод.</option>
+                        <option>6. Свій метод.</option>
                     </select>
                 </div>
             </div>
@@ -38,7 +40,7 @@
                 <div class="col-md-1"><button type="button" id="test" class="btn btn-primary">Start</button></div>
                 <div class="col-md-9">
                     <div class="form-group">
-                        <textarea class="form-control" rows="1" id="area1"></textarea>
+                        <textarea class="form-control" rows="1" id="area1" name="area1"></textarea>
                     </div>
 
                 </div>
