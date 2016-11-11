@@ -56,7 +56,7 @@
                 <div class="col-md-1"><button type="button" id="test" class="btn btn-primary">Start</button></div>
                 <div class="col-md-9">
                     <div class="form-group">
-                        <textarea class="form-control" rows="1" id="area1" name="area1"></textarea>
+                        <textarea class="form-control" rows="2" id="area1" name="area1"></textarea>
                     </div>
                 </div>
             </div>

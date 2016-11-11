@@ -5,10 +5,9 @@ import java.util.Random;
 
 public class SortingMethods {
 
-    public static String selectionSort(String numbers) {
+    public static String selectionSort(int[] arr) {
 
-        int[] arr = Arrays.stream(numbers.split(" ")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-        long timeout= System.currentTimeMillis();
+        long timeout= System.nanoTime();
 
         for (int min=0;min<arr.length-1;min++) {
             int least = min;
@@ -22,15 +21,14 @@ public class SortingMethods {
             arr[least] = tmp;
         }
 
-        timeout = System.currentTimeMillis() - timeout;
-        String result = Arrays.toString(arr) + " Selection sort. Duration - " + timeout + "ms";
+        timeout = System.nanoTime() - timeout;
+        String result = Arrays.toString(arr) + " Selection sort. Duration - " + timeout + "ns";
         return result;
     }
 
-    public static String bubbleSort(String numbers) {
+    public static String bubbleSort(int[] arr) {
 
-        int[] arr = Arrays.stream(numbers.split(" ")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-        long timeout= System.currentTimeMillis();
+        long timeout= System.nanoTime();
 
         for (int i = 0; i < arr.length - 1; i++) {
             boolean swapped = false;
@@ -46,15 +44,14 @@ public class SortingMethods {
                 break;
         }
 
-        timeout = System.currentTimeMillis() - timeout;
-        String result = Arrays.toString(arr) + " Bubble sort. Duration - " + timeout + "ms";
+        timeout = System.nanoTime() - timeout;
+        String result = Arrays.toString(arr) + " Bubble sort. Duration - " + timeout + "ns";
         return result;
     }
 
-    public static String insertionSort(String numbers) {
+    public static String insertionSort(int[] arr) {
 
-        int[] arr = Arrays.stream(numbers.split(" ")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-        long timeout= System.currentTimeMillis();
+        long timeout= System.nanoTime();
 
         for (int i = 1; i < arr.length; i++) {
             for(int j = i ; j > 0 ; j--){
@@ -66,22 +63,26 @@ public class SortingMethods {
             }
         }
 
-        timeout = System.currentTimeMillis() - timeout;
-        String result = Arrays.toString(arr) + " Insertion sort. Duration - " + timeout + "ms";
+        timeout = System.nanoTime() - timeout;
+        String result = Arrays.toString(arr) + " Insertion sort. Duration - " + timeout + "ns";
         return result;
     }
 
-    public static String quickSort(String numbers) {
+    public static String quickSort(int[] arr, int left, int right) {
 
-        int[] arr = Arrays.stream(numbers.split(" ")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-        long timeout= System.currentTimeMillis();
+        long timeout= System.nanoTime();
 
-        qSort(arr, 0, arr.length-1);
+        int index = partition(arr, left, right);
+        if (left < index - 1)
+            quickSort(arr, left, index - 1);
+        if (index < right)
+            quickSort(arr, index, right);
 
-        timeout = System.currentTimeMillis() - timeout;
-        String result = Arrays.toString(arr) + " Quick sort. Duration - " + timeout + "ms";
+        timeout = System.nanoTime() - timeout;
+        String result = Arrays.toString(arr) + " Quick sort. Duration - " + timeout + "ns";
         return result;
     }
+
 
     public static int partition(int arr[], int left, int right) {
         int i = left, j = right;
@@ -105,23 +106,40 @@ public class SortingMethods {
         return i;
     }
 
-    public static void qSort(int arr[], int left, int right) {
-        int index = partition(arr, left, right);
-        if (left < index - 1)
-            qSort(arr, left, index - 1);
-        if (index < right)
-            qSort(arr, index, right);
-    }
+    public static String bogoSort(int[] arr) {
 
-    public static String bogoSort(String numbers) {
-
-        int[] arr = Arrays.stream(numbers.split(" ")).map(String::trim).mapToInt(Integer::parseInt).toArray();
-        long timeout= System.currentTimeMillis();
+        long timeout= System.nanoTime();
 
         while(!inOrder(arr)) shuffle(arr);
 
-        timeout = System.currentTimeMillis() - timeout;
-        String result = Arrays.toString(arr) + " Bogo sort. Duration - " + timeout + " ms";
+        timeout = System.nanoTime() - timeout;
+        String result = Arrays.toString(arr) + " Bogo sort. Duration - " + timeout + " ns";
+        return result;
+    }
+
+    public static String bucketSort(int[] arr, int maxVal) {
+
+        long timeout = System.nanoTime();
+        int [] bucket=new int[maxVal+1];
+
+        for (int i=0; i<bucket.length; i++) {
+            bucket[i]=0;
+        }
+
+        for (int i=0; i<arr.length; i++) {
+            bucket[arr[i]]++;
+        }
+
+        int outPos=0;
+        for (int i=0; i<bucket.length; i++) {
+            for (int j=0; j<bucket[i]; j++) {
+                arr[outPos++]=i;
+            }
+        }
+
+        timeout = System.nanoTime() - timeout;
+        String result = Arrays.toString(arr) + " Bucket sort. Duration - " + timeout + " ns";
+
         return result;
     }
 
@@ -141,5 +159,15 @@ public class SortingMethods {
             if (n[i] > n[i+1]) return false;
         }
         return true;
+    }
+
+    public static int getMax(int[] arr) {
+        int max = arr[0];
+
+        for (int i : arr) {
+            if (i > max) max = i;
+        }
+
+        return max;
     }
 }

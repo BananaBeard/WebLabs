@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,11 +40,14 @@ public class LabsController {
     public @ResponseBody String ajaxTest(@RequestParam String method, @RequestParam String list) {
         int mtd = Integer.parseInt(method.substring(0,1));
         String msg;
-        if (mtd == 1 ) msg = SortingMethods.selectionSort(list);
-        else if (mtd == 2 ) msg = SortingMethods.insertionSort(list);
-        else if (mtd == 3 ) msg = SortingMethods.bogoSort(list);
-        else if (mtd == 4 ) msg = SortingMethods.bubbleSort(list);
-        else msg = SortingMethods.quickSort(list);
+        int[] arr = Arrays.stream(list.split(" ")).map(String::trim).mapToInt(Integer::parseInt).toArray();
+
+        if (mtd == 1 ) msg = SortingMethods.selectionSort(arr);
+        else if (mtd == 2 ) msg = SortingMethods.insertionSort(arr);
+        else if (mtd == 3 ) msg = SortingMethods.bogoSort(arr);
+        else if (mtd == 4 ) msg = SortingMethods.bubbleSort(arr);
+        else if (mtd == 5 ) msg = SortingMethods.quickSort(arr, 0, arr.length-1);
+        else msg = SortingMethods.bucketSort(arr, SortingMethods.getMax(arr));
 
         return msg;
     }
