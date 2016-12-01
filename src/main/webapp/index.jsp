@@ -61,6 +61,11 @@
                     <div class="panel-body">
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><a href="lab6.html" class="btn btn-primary">Лабораторна робота № 6.</a></div>
+                    <div class="panel-body">
+                    </div>
+                </div>
             </div>
             <div class="col-md-2"></div>
         </div>

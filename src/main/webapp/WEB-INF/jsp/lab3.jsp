@@ -9,7 +9,7 @@
 </head>
 <body>
 TASK 1.1 <br>
-<c:forEach begin="200" end="0" step="-2" var="i">
+<c:forEach begin="0" end="200" step="2" var="i">
     <c:out value="${i}"/>
 </c:forEach>
 </body>

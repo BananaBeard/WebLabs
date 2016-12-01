@@ -2,14 +2,13 @@
 tr, td {
     border: 1px solid black;
     border-collapse: collapse;
-	
 }
 
-table 
-{
+table {
 	width: 50%;
 	height: 20%;
-	border-collapse: collapse; 
+	border-collapse: collapse;
+	margin: 0 auto;
 }
 
 	

@@ -35,9 +35,14 @@ public class LabsController {
         return new ModelAndView("lab5");
     }
 
+    @RequestMapping("lab6")
+    public ModelAndView lab6start(){
+        return new ModelAndView("lab6");
+    }
+
     @RequestMapping(value = "/sort", method = RequestMethod.GET)
 
-    public @ResponseBody String ajaxTest(@RequestParam String method, @RequestParam String list) {
+    public @ResponseBody String Sort(@RequestParam String method, @RequestParam String list) {
         int mtd = Integer.parseInt(method.substring(0,1));
         String msg;
         int[] arr = Arrays.stream(list.split(" ")).map(String::trim).mapToInt(Integer::parseInt).toArray();
