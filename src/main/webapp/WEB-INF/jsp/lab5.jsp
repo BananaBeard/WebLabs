@@ -8,28 +8,16 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $("#test").click(function(){
-                $.get("/sort", {method: document.getElementById("sel1").value, list: document.getElementById("area1").value}, function(data,status){
-                    document.getElementById("area1").value = data;
-                });
+                $.get("/sort",
+                        {
+                            method: document.getElementById("sel1").value,
+                            list: document.getElementById("area1").value
+                        },
+                        function(data){
+                            document.getElementById("area1").value = data;
+                        });
             });
         });
-
-        //        function sortText() {
-        //            var list =
-        //            {
-        //                method: "1",
-        //                list: document.getElementById("area1").value
-        //            }
-        //            $.ajax({
-        //                type: "GET",
-        //                dataType: 'json',
-        //                url: "sort.html",
-        //                data: {method: "1", list: document.getElementById("area1").value},
-        //                success: function(data) {
-        //                    $('#time').html(data);
-        //                }
-        //            });
-        //        }
     </script>
 </head>
 <body>
