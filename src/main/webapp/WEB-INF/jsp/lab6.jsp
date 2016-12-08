@@ -33,41 +33,98 @@
             }
         }
 
-        function populateTable(table, rows, cells, content) {
-            if (!table) table = document.createElement('table');
-            for (var i = 0; i < rows; ++i) {
-                var row = document.createElement('tr');
-                for (var j = 0; j < cells; ++j) {
-                    var td = document.createElement('td');
-                    td.setAttribute("colspan", 2);
-                    td.setAttribute("rowspan", 2);
-                    //row.appendChild(document.createElement('td'));
-                    row.appendChild(td);
-                    row.cells[j].appendChild(document.createTextNode(content + (j + 1)));
-                }
-                table.appendChild(row);
-            }
-            return table;
-        }
-
-        function table1() {
+        function table1(number) {
             document.getElementById('tablearea').innerHTML = "";
             var result = "<table>";
-            for (var i = 20; i > 0; --i) {
+
+            for (var i = number; i > 0; --i) {
                 result += "<tr>";
-                if (i<20) {
+                if (i<number) {
                     result += "<td rowspan=" + i + "></td>";
                 }
                 result += "<td colspan=" + i + "></td></tr>";
             }
-            result += "</table>"
+            result += "</table>";
+
             return result;
         }
 
-        function table() {
-            if (document.getElementById('start1r1').checked) {startValue = document.getElementById('start1r1').value}
-            else if (document.getElementById('start1r2').checked) {startValue = document.getElementById('start1r2').value}
-            else if (document.getElementById('start1r3').checked) {startValue = document.getElementById('start1r3').value}
+        function table2(number) {
+            document.getElementById('tablearea').innerHTML = "";
+            var result = "<table>";
+
+            for (var i = number; i > 0; i--)
+            {
+                result += "<tr> <td rowspan=" + i + "></td> <td colspan=" + i + "></td> </tr>";
+            }
+            result += "</table>";
+
+            return result;
+        }
+
+        function table3(number) {
+            document.getElementById('tablearea').innerHTML = "";
+            var result = "<table>";
+
+            for (var i = 0; i < number; i++)
+            {
+                result += "<tr>";
+                if (i%2==0)
+                    result += "<td></td>";
+                result += "<td colspan=\"2\"></td> <td colspan=\"2\"></td> <td colspan=\"2\"></td>";
+                if (i%2==1)
+                    result += "<td></td>";
+                result += "</tr>";
+            }
+            result += "<tr style=\"visibility:hidden\">";
+            for (i = 0; i < 7; i++)
+            {
+                result += "<td></td>";
+            }
+            result += "</tr>";
+            result += "</table>";
+
+            return result;
+        }
+
+        function table4(number) {
+            document.getElementById('tablearea').innerHTML = "";
+            var result = "<table>";
+
+            result += "<tr><td rowspan=3></td>";
+            for(var i = 0; i < 4; i++)
+            {
+                for(var j = 1; j <= 3; j++)
+                {
+                    result += "<td rowspan=" + j + "></td>";
+                }
+            }
+            result += "</tr>";
+            num_rowspan=3;
+            for(i = 0; i < 6; i++)
+            {
+                result += "<tr>";
+                if(i == 5){num_rowspan = 2;}
+                for(j = 0; j < 4; j++)
+                {
+                    result += "<td rowspan=" + num_rowspan + "></td>";
+                }
+                if(i==2 || i==5)
+                {
+                    result +="<td rowspan=" + num_rowspan + ">";
+                }
+                result += "</tr>";
+            }
+            result += "<tr><td></td><td></td><td></td><td></td></tr></table>";
+
+            return result;
+        }
+
+        function table(number) {
+            if (document.getElementById('tab1').checked) {return table1(number);}
+            else if (document.getElementById('tab2').checked) {return table2(number);}
+            else if (document.getElementById('tab3').checked) {return table3(number);}
+            else if (document.getElementById('tab4').checked) {return table4(number);}
         }
     </script>
 </head>
@@ -120,37 +177,46 @@
                             <p>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
+                                    <img class="img-responsive" src="/resources/img/table1.jpg" alt="Table1">
+                                </div>
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="/resources/img/table2.jpg" alt="Table2">
+                                </div>
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="/resources/img/table3.jpg" alt="Table3">
+                                </div>
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="/resources/img/table4.jpg" alt="Table4">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio" id="1" value="1">Table 1</label>
+                                        <label><input type="radio" name="optradio" id="tab1" value="1">Table 1</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio">Table 2</label>
+                                        <label><input type="radio" name="optradio" id="tab2" value="2">Table 2</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio">Table 3</label>
+                                        <label><input type="radio" name="optradio" id="tab3" value="3">Table 3</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
                                     <div class="radio">
-                                        <label><input type="radio" name="optradio">Table 4</label>
+                                        <label><input type="radio" name="optradio" id="tab4" value="4">Table 4</label>
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="form-group">
+                                <label for="step">Number of rows:</label>
+                                <input type="text" class="form-control" id="row">
                             </div>
                             <button type="button" class="btn btn-primary center-block" onclick="document.getElementById('tablearea')
-                            .appendChild(populateTable(null,
-                            parseInt(document.getElementById('rows').value),
-                            parseInt(document.getElementById('cells').value), 'Text') )">Start</button>
-                            <button type="button" class="btn btn-primary center-block" onclick="document.getElementById('tablearea')
-                            .innerHTML = table1()">Start</button>
+                            .innerHTML = table(parseInt(document.getElementById('row').value))">Start</button>
                             <br>
                             <div id="tablearea"></div>
                             </p>
