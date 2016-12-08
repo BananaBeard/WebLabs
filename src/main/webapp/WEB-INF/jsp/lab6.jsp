@@ -15,20 +15,22 @@
             var endValue = parseInt(document.getElementById('end').value);
             var stepValue = parseInt(document.getElementById('step').value);
 
-            alert(startValue);
-
             var Alltext = "";
 
-            if (startValue < endValue) {
-                for (var i=startValue; i<=endValue; i-=((-1)*stepValue)) {
-                    Alltext += i + " ";
-                }
+            if ( stepValue <= 0){
+                alert("Wrong step value!");
             } else {
-                for (var i = startValue; i >= endValue; i -= stepValue) {
-                    Alltext +=i + " ";
+                if (startValue < endValue) {
+                    for (var i=startValue; i<=endValue; i-=((-1)*stepValue)) {
+                        Alltext += i + " ";
+                    }
+                } else {
+                    for (var i = startValue; i >= endValue; i -= stepValue) {
+                        Alltext +=i + " ";
+                    }
                 }
+                document.getElementById("area").value = Alltext;
             }
-            document.getElementById("area").value = Alltext;
         }
 
         function populateTable(table, rows, cells, content) {
@@ -36,12 +38,36 @@
             for (var i = 0; i < rows; ++i) {
                 var row = document.createElement('tr');
                 for (var j = 0; j < cells; ++j) {
-                    row.appendChild(document.createElement('td'));
+                    var td = document.createElement('td');
+                    td.setAttribute("colspan", 2);
+                    td.setAttribute("rowspan", 2);
+                    //row.appendChild(document.createElement('td'));
+                    row.appendChild(td);
                     row.cells[j].appendChild(document.createTextNode(content + (j + 1)));
                 }
                 table.appendChild(row);
             }
             return table;
+        }
+
+        function table1() {
+            document.getElementById('tablearea').innerHTML = "";
+            var result = "<table>";
+            for (var i = 20; i > 0; --i) {
+                result += "<tr>";
+                if (i<20) {
+                    result += "<td rowspan=" + i + "></td>";
+                }
+                result += "<td colspan=" + i + "></td></tr>";
+            }
+            result += "</table>"
+            return result;
+        }
+
+        function table() {
+            if (document.getElementById('start1r1').checked) {startValue = document.getElementById('start1r1').value}
+            else if (document.getElementById('start1r2').checked) {startValue = document.getElementById('start1r2').value}
+            else if (document.getElementById('start1r3').checked) {startValue = document.getElementById('start1r3').value}
         }
     </script>
 </head>
@@ -93,16 +119,28 @@
                             <h3>Створити таблицю із заданим значенням рядків і стовпців</h3>
                             <p>
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="rows">Rows:</label>
-                                        <input type="text" class="form-control" id="rows">
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio" id="1" value="1">Table 1</label>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cells">Cells:</label>
-                                        <input type="text" class="form-control" id="cells">
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio">Table 2</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio">Table 3</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="/resources/img/table1-2.jpg" alt="Table12">
+                                    <div class="radio">
+                                        <label><input type="radio" name="optradio">Table 4</label>
                                     </div>
                                 </div>
 
@@ -111,6 +149,8 @@
                             .appendChild(populateTable(null,
                             parseInt(document.getElementById('rows').value),
                             parseInt(document.getElementById('cells').value), 'Text') )">Start</button>
+                            <button type="button" class="btn btn-primary center-block" onclick="document.getElementById('tablearea')
+                            .innerHTML = table1()">Start</button>
                             <br>
                             <div id="tablearea"></div>
                             </p>
